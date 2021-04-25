@@ -21,7 +21,7 @@
       </div>
       
       <div class="product-info">
-        <h1>{{ product }}</h1>
+        <h1>{{ title }}</h1>
         <p
           v-if="inventory > 10"
           :class="inStock ? '' : 'out-of-stock'"
@@ -37,9 +37,9 @@
           <li
             :key="variant.id"
             class="color-box"
-            v-for="variant in variants"
+            v-for="(variant, index) in variants"
             v-bind:style="{ backgroundColor: variant.color }"
-            @mouseover="updateProduct(variant.image)"
+            @mouseover="updateProduct(index)"
           >
           </li>
         </ul>
@@ -60,6 +60,8 @@
         <div class="cart">
           <p>Cart: ({{ cart }})</p>
         </div>
+
+        <p>{{ printBrandAndProduct }}</p>
       </div>
 
       <a :href="hreffy" :target="targetty">
