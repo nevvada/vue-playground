@@ -22,20 +22,25 @@
       
       <div class="product-info">
         <h1>{{ product }}</h1>
-        <p v-if="inventory > 10">In Stock</p>
+        <p
+          v-if="inventory > 10"
+          :class="inStock ? '' : 'out-of-stock'"
+        >
+          In Stock
+        </p>
         <p v-else-if="(inventory > 0) && (inventory <= 10)">Almost Out of Stock</p>
         <p v-else>Out of Stock</p>
-
-        <p v-show="inStock">Henlo</p>
 
         <span v-if="onSale">On Sale!</span>
 
         <ul>
           <li
-            v-for="variant in variants"
             :key="variant.id"
+            class="color-box"
+            v-for="variant in variants"
+            v-bind:style="{ backgroundColor: variant.color }"
+            @mouseover="updateProduct(variant.image)"
           >
-            {{ variant.color }}
           </li>
         </ul>
 
@@ -47,6 +52,14 @@
             {{ size }}
           </li>
         </ul>
+
+        <button v-on:click="addToCart" :disabled="!inStock" :class="!inStock ? 'disabledButton' : ''">Add to Cart</button>
+
+        <button @click="removeFromCart">Remove from Cart</button>
+      
+        <div class="cart">
+          <p>Cart: ({{ cart }})</p>
+        </div>
       </div>
 
       <a :href="hreffy" :target="targetty">
