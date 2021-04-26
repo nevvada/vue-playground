@@ -14,61 +14,9 @@
   </div>
 
   <div id="app">
-    <div class="product">
-
-      <div class="product-image">
-        <img v-bind:src="image" alt="">
-      </div>
-      
-      <div class="product-info">
-        <h1>{{ title }}</h1>
-        <p
-          v-if="inventory > 10"
-          :class="inStock ? '' : 'out-of-stock'"
-        >
-          In Stock
-        </p>
-        <p v-else-if="(inventory > 0) && (inventory <= 10)">Almost Out of Stock</p>
-        <p v-else>Out of Stock</p>
-
-        <span v-if="onSale">On Sale!</span>
-
-        <ul>
-          <li
-            :key="variant.id"
-            class="color-box"
-            v-for="(variant, index) in variants"
-            v-bind:style="{ backgroundColor: variant.color }"
-            @mouseover="updateProduct(index)"
-          >
-          </li>
-        </ul>
-
-        <ul>
-          <li
-            :key="size"
-            v-for="size in sizes"
-          >
-            {{ size }}
-          </li>
-        </ul>
-
-        <button v-on:click="addToCart" :disabled="!inStock" :class="!inStock ? 'disabledButton' : ''">Add to Cart</button>
-
-        <button @click="removeFromCart">Remove from Cart</button>
-      
-        <div class="cart">
-          <p>Cart: ({{ cart }})</p>
-        </div>
-
-        <p>{{ printBrandAndProduct }}</p>
-      </div>
-
-      <a :href="hreffy" :target="targetty">
-        Google
-      </a>
-
-    </div>
+    <product :premium="premium" add-to-cart="addToGlobalCart"></product>
+    <!-- <product></product> -->
+    <!-- <product></product> -->
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
