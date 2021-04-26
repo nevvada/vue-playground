@@ -18,13 +18,11 @@ Vue.component('product', {
     }
   },
   methods: {
-    addToCart: function () {
-      this.$emitEvent('add-to-cart')
+    addToCart(id) {
+      this.$emit('add-to-cart', id);
     },
     removeFromCart() {
-      if (this.cart > 0) {
-        this.cart -= 1;
-      }
+      this.$emit('remove-from-cart');
     },
     updateProduct(index) {
       this.selectedVariant = index;
@@ -53,7 +51,6 @@ Vue.component('product', {
     return {
       brand: 'Vue Mastery',
       hreffy: 'https://google.com',
-      selectedVariant: 0,
       product: 'Socks',
       targetty: '_blank',
       selectedVariant: 0,
@@ -84,7 +81,6 @@ Vue.component('product', {
         'M',
         'L',
       ],
-      cart: 0,
     }
   },
   template: `
@@ -130,13 +126,9 @@ Vue.component('product', {
 
     <product-details :details="details"></product-details>
 
-    <button v-on:click="addToCart" :disabled="!inStock" :class="!inStock ? 'disabledButton' : ''">Add to Cart</button>
+    <button @click="addToCart(variants[selectedVariant].id)" :disabled="!inStock" :class="!inStock ? 'disabledButton' : ''">Add to Cart</button>
 
-    <button @click="removeFromCart">Remove from Cart</button>
-  
-    <div class="cart">
-      <p>Cart: ({{ cart }})</p>
-    </div>
+    <button @click="removeFromCart()">Remove from Cart</button>
 
     <p>{{ printBrandAndProduct }}</p>
   </div>
@@ -152,6 +144,15 @@ Vue.component('product', {
 const app = new Vue({
   el: '#app',
   data: {
+    cart: [],
     premium: false,
-  }
+  },
+  methods: {
+    addToGlobalCart(id) {
+      this.cart.push(id)
+    },
+    removeFromGlobalCart() {
+      this.cart = this.cart.slice(0, -1);
+    },
+  },
 });

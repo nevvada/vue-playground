@@ -14,9 +14,11 @@
   </div>
 
   <div id="app">
-    <product :premium="premium" add-to-cart="addToGlobalCart"></product>
-    <!-- <product></product> -->
-    <!-- <product></product> -->
+    <product :premium="premium" @add-to-cart="addToGlobalCart" @remove-from-cart="removeFromGlobalCart"></product>
+
+    <div class="cart">
+      <p>Cart: ({{ cart.length }})</p>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
