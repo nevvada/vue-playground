@@ -58,7 +58,6 @@ export default {
     },
 
     removeTodo(id) {
-      console.log('TODOLIST: clicked')
       this.todos = this.todos.filter((_, index) => {
         return (index !== (id - 1))
       })
