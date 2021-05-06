@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <main>
-      hi derr
+    <main id="main">
       <router-view />
     </main>
   </div>
@@ -35,5 +34,18 @@ export default {
     font-weight: normal;
     margin: 0;
     padding: 0;
+  }
+
+  body {
+    background-attachment: fixed;
+    background-image: linear-gradient(to bottom, #C6D8D3, #FDF0D5, #3A3335);
+  }
+
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+  }
+
+  #main {
+    margin: 5em;
   }
 </style>

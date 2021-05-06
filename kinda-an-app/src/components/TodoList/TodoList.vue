@@ -1,24 +1,30 @@
 <template>
-  <div>
-    <h2>Todos</h2>
-    <ul>
+  <div class="wrapper">
+    <h1>Todos</h1>
+    <ol>
       <li
         v-for="(todo, index) in todos"
         :key="index"
       >
         <Todo :todo="todo" />
       </li>
-    </ul>
-    <form @submit.prevent="addTodo">
+    </ol>
+    <form
+      @submit.prevent="addTodo"
+      id="addTodoForm"
+    >
       <input
         :value="this.inputValue"
         @input="updateInputValue"
         type="text"
       />
-      <input
-        type="submit"
-        value="Add Todo"
-      />
+      <div id="submitButtonWrapper">
+        <input
+          id="submitButton"
+          type="submit"
+          value="Add Todo"
+        />
+      </div>
     </form>
   </div>
 </template>
@@ -53,6 +59,48 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  #addTodoForm {
+    height: 10em;
+    display: flex;
+    align-items: center;
+  }
+
+  #addTodoForm > input[type="text"] {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 1.5em;
+  }
+
+  #submitButtonWrapper {
+    display: inline-block;
+  }
+
+  #submitButton {
+    background-color: #f2b5d4;
+    border: none;
+    border-radius: 7%;
+    font-size: 1.5em;
+    margin-left: 2em;
+    opacity: 0.9;
+    padding: 1em 2em;
+  }
+
+  #submitButton:hover {
+    animation: buttonHover 0.5s forwards;
+    cursor: pointer;
+  }
+
+  @keyframes buttonHover {
+    to {
+      border: 1px solid #000;
+    }
+  }
 </style>
