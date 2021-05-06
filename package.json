@@ -1,0 +1,20 @@
+{
+  "name": "vue-playground",
+  "version": "1.0.0",
+  "description": "Playground for experimenting with Vue stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nlemast/vue-playground.git"
+  },
+  "keywords": [],
+  "author": "Neighthan Le Master",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nlemast/vue-playground/issues"
+  },
+  "homepage": "https://github.com/nlemast/vue-playground#readme"
+}
