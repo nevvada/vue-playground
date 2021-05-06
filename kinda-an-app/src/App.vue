@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    hi derr
+    <main>
+      hi derr
+      <router-view />
+    </main>
   </div>
 </template>
 
@@ -28,8 +31,8 @@ export default {
   p,
   ol,
   ul {
+    font-weight: normal;
     margin: 0;
     padding: 0;
-    font-weight: normal;
   }
 </style>
