@@ -36,9 +36,14 @@ export default {
     padding: 0;
   }
 
+  ol,
+  ul {
+    list-style-type: none;
+  }
+
   body {
     background-attachment: fixed;
-    background-image: linear-gradient(to bottom, #C6D8D3, #FDF0D5, #3A3335);
+    background-image: linear-gradient(to bottom, #C6D8D3, #FDF0D5);
   }
 
   #app {

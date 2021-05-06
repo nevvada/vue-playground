@@ -1,12 +1,17 @@
 <template>
   <div class="wrapper">
     <h1>Todos</h1>
-    <ol>
+    <ol id="todoList">
       <li
         v-for="(todo, index) in todos"
         :key="index"
+        id="todoListItem"
       >
-        <Todo :todo="todo" />
+        <Todo
+          :number="index + 1"
+          :todo="todo"
+          @removeTodo="removeTodo"
+        />
       </li>
     </ol>
     <form
@@ -52,6 +57,13 @@ export default {
       this.inputValue = '';
     },
 
+    removeTodo(id) {
+      console.log('TODOLIST: clicked')
+      this.todos = this.todos.filter((_, index) => {
+        return (index !== (id - 1))
+      })
+    },
+
     updateInputValue(event) {
       this.inputValue = event.target.value;
     }
@@ -64,6 +76,19 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  #todoList {
+    width: 30%;
+  }
+
+  #todoListItem {
+    margin: 1em 0;
+    padding: 1em;
+
+    &:hover {
+      border: 1px solid black;
+    }
   }
 
   #addTodoForm {
@@ -91,11 +116,11 @@ export default {
     margin-left: 2em;
     opacity: 0.9;
     padding: 1em 2em;
-  }
 
-  #submitButton:hover {
-    animation: buttonHover 0.5s forwards;
-    cursor: pointer;
+    &:hover {
+      animation: buttonHover 0.5s forwards;
+      cursor: pointer;
+    }
   }
 
   @keyframes buttonHover {
