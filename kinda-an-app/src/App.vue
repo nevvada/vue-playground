@@ -1,6 +1,20 @@
 <template>
   <div id="app">
     <main id="main">
+      <nav>
+        <ul class="navList">
+          <li
+            v-for="route in routes"
+            :key="route.name"
+          >
+            <router-link :to="{
+              name: route.name,
+            }">
+              {{ route.name }}
+            </router-link>
+          </li>
+        </ul>
+      </nav>
       <router-view />
     </main>
   </div>
@@ -11,6 +25,12 @@ export default {
   name: 'App',
 
   components: {},
+
+  computed: {
+    routes() {
+      return this.$router.options.routes;
+    }
+  }
 }
 </script>
 
@@ -51,6 +71,11 @@ export default {
   }
 
   #main {
-    margin: 5em;
+    margin: 2em 5em;
+  }
+
+  .navList {
+    display: flex;
+    justify-content: space-around;
   }
 </style>

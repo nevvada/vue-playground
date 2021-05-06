@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import ECommerceStore from '../components/ecommerce/ECommerceStore/ECommerceStore.vue';
 import TodoList from '../components/todos/TodoList/TodoList.vue';
 
 Vue.use(Router);
@@ -10,13 +11,13 @@ export default new Router({
   routes: [
     {
       component: TodoList,
-      name: 'TodoList',
+      name: 'Todo List',
       path: '/todos',
     },
-    // {
-    //   component: ECommerce,
-    //   name: 'ECommerce',
-    //   path: '/ecommerce',
-    // }
+    {
+      component: ECommerceStore,
+      name: 'Store',
+      path: '/ecommerce',
+    }
   ],
 });
