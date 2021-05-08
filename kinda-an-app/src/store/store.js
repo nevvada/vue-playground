@@ -11,17 +11,23 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    updateCategories(_, categories) {
-      this.categories = categories;
+    updateCategories(state, categories) {
+      state.categories = categories;
     }
+  },
+
+  getters: {
+    categories: state => {
+      return state.categories
+    },
   },
 
   actions: {
     addToCart() {
       axios.post('/api/cart', [])
-        .then(res => console.log('sposf', res.data))
         .catch(console.error);
     },
+
     getCategories({ commit }) {
       axios.get('/api/ecommerce')
         .then(res => commit('updateCategories', res.data))
