@@ -1,12 +1,24 @@
 <template>
   <div>
-    ecommerce store
-    <button @click="addToCart()">add to cart</button>
+    <div v-if="!loading">
+      loading...
+    </div>
+
+    <ul v-if="loading">
+      <li
+        v-for="category in categories"
+        :key="category"
+        @click="pushRoute(category)"
+      >
+        {{ category }}
+      </li>
+    </ul>
+    <!-- <button @click="addToCart()">add to cart</button> -->
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'ECommerceStore',
@@ -15,16 +27,30 @@ export default {
     this.getCategories();
   },
 
+  computed: {
+    ...mapGetters(['categories']),
+
+    loading() {
+      return this.categories.length;
+    }
+  },
+
   methods: {
     ...mapActions(['getCategories', 'addToCart']),
 
     addToCart() {
       this.$store.dispatch('addToCart', {})
-    }
-  }
+    },
+
+    pushRoute(category) {
+      this.$router.push(`/${category}`);
+    },
+  },
 }
 </script>
 
-<style>
-
+<style scoped>
+  li {
+    cursor: pointer;
+  }
 </style>
